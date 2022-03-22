@@ -9,5 +9,13 @@ public class Task {
     public Task(String title, String description) {
         this.title = title;
         this.description = description;
+        this.type = "Task";
+    }
+
+    public Task(int id, String title, String description, String status) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
     }
 }
