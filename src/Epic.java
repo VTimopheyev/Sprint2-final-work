@@ -1,7 +1,8 @@
-public class Epic {
+public class Epic extends Task {
 
-    public Epic() {
-
-
+    public Epic(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
+
 }
