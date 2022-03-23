@@ -5,4 +5,15 @@ public class Epic extends Task {
         this.type = "Epic";
     }
 
+
+    @Override
+    public String toString() {
+        return "Epic{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
