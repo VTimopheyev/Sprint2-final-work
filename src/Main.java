@@ -1,7 +1,4 @@
-import java.util.HashMap;
-
 public class Main {
-
 
 
     public static void main(String[] args) {
@@ -33,7 +30,7 @@ public class Main {
         System.out.println("Subtasks:");
         System.out.println(taskManager.subtasks);
 
-        System.out.println("Changing parameters");
+        System.out.println("Updating parameters");
         Task updatedTask;
         updatedTask = task1;
         updatedTask.status = "In progress";
@@ -73,29 +70,25 @@ public class Main {
 
         System.out.println("Delete by ID:");
         //taskManager.deleteIssueById(epic1.id);
+        taskManager.deleteIssueById(subtask2.id);
+        //taskManager.deleteIssueById(task1.id);
         System.out.println("Epics:");
         System.out.println(taskManager.epics);
         System.out.println("Subtasks:");
         System.out.println(taskManager.subtasks);
         System.out.println("Subtasks of Epic by ID:");
         System.out.println(taskManager.getSubtasksOfEpic(3));
+        taskManager.deleteIssueById(subtask1.id);
+        System.out.println("Subtasks of Epic by ID:");
+        System.out.println(taskManager.getSubtasksOfEpic(3));
+        System.out.println("Epics:");
+        System.out.println(taskManager.epics);
+        System.out.println("Tasks:");
+        System.out.println(taskManager.tasks);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        taskManager.deleteAllTasksOfType("Task");
+        System.out.println("Tasks:");
+        System.out.println(taskManager.tasks);
 
 
     }

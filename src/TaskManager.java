@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TaskManager {
@@ -36,7 +37,7 @@ public class TaskManager {
     }
 
     public void updateEpicStatus(int id){
-        if (checkSubtasksAllDoneInEpic(id)) {
+        if (checkSubtasksInEpic(id) && checkSubtasksAllDoneInEpic(id)) {
             epics.get(id).status = "Done";
         } else if (!checkSubtasksInEpic(id) || checkSubtasksAllNewInEpic(id)) {
             epics.get(id).status = "New";
@@ -141,17 +142,15 @@ public class TaskManager {
         if(tasks.containsKey(id)) {
             tasks.remove(id);
         }else if(epics.containsKey(id)){
-            for(int key : subtasks.keySet()){
-                if(subtasks.get(key).epicId == id){
-                    subtasks.remove(key);
-                }
-            }
+            int epicId = id;
             epics.remove(id);
+            removeAllRelatedSubtasks(epicId);
+
         }else if(subtasks.containsKey(id)){
             int epicId;
             epicId = subtasks.get(id).epicId;
-            subtasks.remove(id);
-            updateEpicStatus(epicId);
+           subtasks.remove(id);
+           updateEpicStatus(epicId);
         }
 
     }
@@ -168,10 +167,23 @@ public class TaskManager {
         return relatedSubtasks;
     }
 
-
-
-
-
-
-
+    public void removeAllRelatedSubtasks(int epicId){
+        ArrayList<Integer> subtasksToDelete = new ArrayList<>();
+        for (int key : subtasks.keySet()) {
+            if (subtasks.get(key).epicId == epicId) {
+                subtasksToDelete.add(subtasks.get(key).id);
+            }
+        }
+        for(Integer id : subtasksToDelete) {
+            subtasks.remove(id);
+        }
+    }
 }
+
+
+
+
+
+
+
+
